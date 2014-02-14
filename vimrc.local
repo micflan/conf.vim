@@ -3,11 +3,15 @@
 " keyboard shortcuts
 inoremap jj <ESC>
 
+" Auto-hide NERDTree when file opens
+let NERDTreeQuitOnOpen = 1
+
 " highlight search
 set hlsearch
 nmap <leader>hl :let @/ = ""<CR>
 
 " gui settings
+set background=dark
 set t_Co=256
 if (&t_Co == 256 || has('gui_running'))
   if ($TERM_PROGRAM == 'iTerm.app')
