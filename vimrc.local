@@ -65,6 +65,7 @@ let xml_syntax_folding=1      " XML
 
 " Auto fold based on indent for html
 autocmd FileType html setlocal foldmethod=indent
+autocmd FileType xhtml setlocal foldmethod=indent
 
 " Bindings for PHP auto-insert-use
 inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
