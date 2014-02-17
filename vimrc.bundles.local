@@ -1,7 +1,7 @@
 " Bundle 'joonty/vim-phpqa.git'
 Bundle 'joonty/vim-sauce.git'
 " Bundle 'joonty/vim-phpunitqf.git'
-Bundle 'joonty/vim-taggatron.git'
+" Bundle 'joonty/vim-taggatron.git'
 Bundle 'tpope/vim-markdown.git'
 Bundle 'ervandew/supertab.git'
 " Bundle 'scrooloose/syntastic.git'
@@ -17,3 +17,4 @@ Bundle 'arnaud-lb/vim-php-namespace'
 Bundle 'shawncplus/phpcomplete.vim'
 Bundle 'vim-php/tagbar-phpctags.vim'
 " Bundle 'rayburgemeestre/phpfolding.vim'
+Bundle "daylerees/colour-schemes", { "rtp": "vim-themes/" }
