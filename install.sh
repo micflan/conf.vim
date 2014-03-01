@@ -18,6 +18,10 @@ ln -s $DIR/vimrc.bundles ~/.vimrc.bundles
 ln -s $DIR/vimrc.bundles.local ~/.vimrc.bundles.local
 echo "Done."
 
-echo "Installing Vim Bundles ... "
+echo "Installing Vundle ... "
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+echo "Done."
+
+echo "Installing Bundles ... "
 vim +BundleInstall +qall
 echo "Done."
