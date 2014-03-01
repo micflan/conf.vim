@@ -1,27 +1,42 @@
-#!/bin/sh
+#!/bin/bash
+
+# Check the user has Git installed
+if ! hash git 2>/dev/null; then
+    echo -e "\e[91mError: Git is required but not installed."
+    exit;
+fi
+
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 timestamp=$(date +%s)
 
-echo "Backing up existing config ... "
-mkdir $DIR/backup
-mkdir $DIR/backup/$timestamp
-mv ~/.vim* $DIR/backup/$timestamp/
-echo "Done."
+echo -e "\n\e[36mBacking up existing config... \e[1;30m"
+if [ ! -d $DIR/backup ]; then
+    mkdir -v $DIR/backup
+fi
+mkdir -v $DIR/backup/$timestamp
+mv -v ~/.vim* $DIR/backup/$timestamp/
+echo -e "\e[92mDone.\n"
 
-echo "Creating Symlinks ... "
-ln -s $DIR/vim ~/.vim
-ln -s $DIR/vimrc ~/.vimrc
-ln -s $DIR/vimrc.local ~/.vimrc.local
-ln -s $DIR/vimrc.bundles ~/.vimrc.bundles
-ln -s $DIR/vimrc.bundles.local ~/.vimrc.bundles.local
-echo "Done."
+echo -e "\e[36mCreating Symlinks... \e[1;30m"
+ln -sv $DIR/vim ~/.vim
+ln -sv $DIR/vimrc ~/.vimrc
+ln -sv $DIR/vimrc.local ~/.vimrc.local
+ln -sv $DIR/vimrc.bundles ~/.vimrc.bundles
+ln -sv $DIR/vimrc.bundles.local ~/.vimrc.bundles.local
+echo -e "\e[92mDone.\n"
 
-echo "Installing Vundle ... "
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-echo "Done."
+echo -e "\e[36mInstalling Vundle... \e[1;30m"
+if [ ! -d ~/.vim/bundle/vundle ]; then
+    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+    echo -e "\e[92mDone.\n"
+else
+    echo -e "\e[92mVundle already installed.\n"
+fi
 
-echo "Installing Bundles ... "
+echo -e "\e[36mInstalling Bundles... \e[1;30m"
 vim +BundleInstall +qall
-echo "Done."
+echo -e "\e[92mDone.\n"
+
+echo -e "\e[0mEnjoy Vim!\n"
