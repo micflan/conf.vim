@@ -17,4 +17,5 @@ Bundle 'arnaud-lb/vim-php-namespace'
 Bundle 'shawncplus/phpcomplete.vim'
 Bundle 'vim-php/tagbar-phpctags.vim'
 " Bundle 'rayburgemeestre/phpfolding.vim'
+Bundle 'wakatime/vim-wakatime'
 Bundle "daylerees/colour-schemes", { "rtp": "vim-themes/" }

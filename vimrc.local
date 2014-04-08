@@ -17,7 +17,7 @@ if (&t_Co == 256 || has('gui_running'))
   if ($TERM_PROGRAM == 'iTerm.app')
     colorscheme solarized
   else
-    colorscheme desert
+    colorscheme slate
   endif
 endif
 
@@ -46,7 +46,8 @@ filetype plugin on
 set nowrap
 set autoindent                  " Indent at the same level of the previous line
 set shiftwidth=4                " Use indents of 4 spaces
-set expandtab                   " Tabs are spaces, not tabs
+" set expandtab                   " Tabs are spaces, not tabs
+set noexpandtab                   " Tabs are tabs
 set tabstop=4                   " An indentation every four columns
 set softtabstop=4               " Let backspace delete indent
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
