@@ -68,6 +68,10 @@ let sh_fold_enabled=1         " sh
 let vimsyn_folding='af'       " Vim script
 let xml_syntax_folding=1      " XML
 
+// No Wrapping!
+set textwidth=0
+set wrapmargin=0
+
 " Auto fold based on indent for html
 autocmd FileType html setlocal foldmethod=indent
 autocmd FileType xhtml setlocal foldmethod=indent
@@ -79,3 +83,5 @@ noremap <Leader>u :call PhpInsertUse()<CR>
 " SnipMate (don't think these work)
 imap <c-k> <Plug>snipMateShow
 smap <c-k> <Plug>snipMateShow
+
+let g:phpcomplete_index_composer_command='composer'
