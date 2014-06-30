@@ -11,7 +11,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 timestamp=$(date +%s)
 
 # Backup
-echo -e "\n\e[36mBacking up existing config... \e[1;30m"
+echo -e "\n\e[36mBacking up existing config... \e[2;49m"
 if [ ! -d $DIR/backup ]; then
     mkdir -v $DIR/backup
 fi
@@ -20,16 +20,19 @@ mv -v ~/.vim* $DIR/backup/$timestamp/
 echo -e "\e[92mDone.\n"
 
 # Symlinks
-echo -e "\e[36mCreating Symlinks... \e[1;30m"
+if [ ! -f $DIR/vimrc.local.$HOSTNAME ]; then
+    touch $DIR/vimrc.local.$HOSTNAME
+fi
+echo -e "\e[36mCreating Symlinks... \e[2;49m"
 ln -sv $DIR/vim ~/.vim
 ln -sv $DIR/vimrc ~/.vimrc
-ln -sv $DIR/vimrc.local ~/.vimrc.local
+ln -sv $DIR/vimrc.local.$HOSTNAME ~/.vimrc.local
 ln -sv $DIR/vimrc.bundles ~/.vimrc.bundles
 ln -sv $DIR/vimrc.bundles.local ~/.vimrc.bundles.local
 echo -e "\e[92mDone.\n"
 
 # Vundle
-echo -e "\e[36mInstalling Vundle... \e[1;30m"
+echo -e "\e[36mInstalling Vundle... \e[2;49m"
 if [ ! -d ~/.vim/bundle/vundle ]; then
     git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
     echo -e "\e[92mDone.\n"
@@ -38,7 +41,7 @@ else
 fi
 
 # Bundles
-echo -e "\e[36mInstalling Bundles... \e[1;30m"
+echo -e "\e[36mInstalling Bundles... \e[2;49m"
 vim +BundleInstall +qall
 echo -e "\e[92mDone.\n"
 

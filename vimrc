@@ -125,3 +125,95 @@ if filereadable(expand("~/.vimrc.local"))
   " noremap! jj <ESC>
   source ~/.vimrc.local
 endif
+
+
+
+" What was local now is synced
+"
+" set nocursorline " don't highlight current line
+
+" keyboard shortcuts
+inoremap jj <ESC>
+
+" Auto-hide NERDTree when file opens
+let NERDTreeQuitOnOpen = 1
+
+" highlight search
+set hlsearch
+nmap <leader>hl :let @/ = ""<CR>
+
+" gui settings
+set background=dark
+set t_Co=256
+if (&t_Co == 256 || has('gui_running'))
+  if ($TERM_PROGRAM == 'iTerm.app')
+    colorscheme solarized
+  else
+    colorscheme slate
+  endif
+endif
+
+" Disambiguate ,a & ,t from the Align plugin, making them fast again.
+"
+" This section is here to prevent AlignMaps from adding a bunch of mappings
+" that interfere with the very-common ,a and ,t mappings. This will get run
+" at every startup to remove the AlignMaps for the *next* vim startup.
+"
+" If you do want the AlignMaps mappings, remove this section, remove
+" ~/.vim/bundle/Align, and re-run rake in maximum-awesome.
+function! s:RemoveConflictingAlignMaps()
+  if exists("g:loaded_AlignMapsPlugin")
+    AlignMapsClean
+  endif
+endfunction
+command! -nargs=0 RemoveConflictingAlignMaps call s:RemoveConflictingAlignMaps()
+silent! autocmd VimEnter * RemoveConflictingAlignMaps
+
+
+" My Stuff
+
+filetype plugin on
+
+" Indenting and stuff like that
+set nowrap
+set autoindent                  " Indent at the same level of the previous line
+set shiftwidth=4                " Use indents of 4 spaces
+" set expandtab                   " Tabs are spaces, not tabs
+set noexpandtab                   " Tabs are tabs
+set tabstop=4                   " An indentation every four columns
+set softtabstop=4               " Let backspace delete indent
+set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+set foldenable                  " Auto fold code
+set ignorecase                  " Case insensitive search
+set smartcase                   " Case sensitive when uc present
+set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+
+" Auto fold based on syntax by default
+set foldmethod=syntax
+set foldlevelstart=1
+let javaScript_fold=1         " JavaScript
+let perl_fold=1               " Perl
+let php_folding=1             " PHP
+let r_syntax_folding=1        " R
+let ruby_fold=1               " Ruby
+let sh_fold_enabled=1         " sh
+let vimsyn_folding='af'       " Vim script
+let xml_syntax_folding=1      " XML
+
+" No Wrapping!
+set textwidth=0
+set wrapmargin=0
+
+" Auto fold based on indent for html
+autocmd FileType html setlocal foldmethod=indent
+autocmd FileType xhtml setlocal foldmethod=indent
+
+" Bindings for PHP auto-insert-use
+inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
+noremap <Leader>u :call PhpInsertUse()<CR>
+
+" SnipMate (don't think these work)
+imap <c-k> <Plug>snipMateShow
+smap <c-k> <Plug>snipMateShow
+
+let g:phpcomplete_index_composer_command='composer'
